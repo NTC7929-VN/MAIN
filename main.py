@@ -2429,6 +2429,9 @@ def nuoi_acctiktok(duration, device_id):
         if random.randint(1, 13) == 1:
             tap_comment()
             time.sleep(1)
+        if (time.time()-start_time)//1800==0:
+        	open_tiktok()
+        	time.sleep(30)
         time.sleep(random.randint(10, 30))  # nghỉ giữa mỗi hành động
 
     colored_print("✅ Đã hoàn thành thời gian nuôi acc.", "green")
