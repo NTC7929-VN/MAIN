@@ -104,7 +104,7 @@ def get_adb_devices():
 def select_device(devices):
     while True:
         try:
-            choice = int(input("Chọn thiết bị ADB (nhập số STT): ")) - 1
+            choice = 0
             if 0 <= choice < len(devices):
                 colored_print(f"ĐÃ CHỌN THIẾT BỊ: {devices[choice]}", "green")
                 return devices[choice]
