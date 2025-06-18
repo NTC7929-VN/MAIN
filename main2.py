@@ -295,25 +295,25 @@ def nuoi_acctiktok(device_id, duration,statuscomment=None):
         action = random.randint(1, 50)
         if action in [1, 2, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]:
             swipe_up()
-            for i in range(0,random.randint(10,60))
+            for i in range(0,random.randint(10,60)):
                 time.sleep(1)
             if time.time() - start_time >=duration:
                 break
         elif action in [30, 31, 32, 33, 34, 35, 36, 37, 38]:
             swipe_down()
-            for i in range(0,random.randint(1,60))
+            for i in range(0,random.randint(1,60)):
                 time.sleep(1)
             if time.time() - start_time >=duration:
                 break
         if action in [40, 41, 42, 43]:
             tap_like()
-            for i in range(0,random.randint(1,60))
+            for i in range(0,random.randint(1,60)):
                 time.sleep(1)
             if time.time() - start_time >=duration:
                 break
         if action in [48, 49]:
             tap_comment()
-            for i in range(0,random.randint(1,30))
+            for i in range(0,random.randint(1,30)):
                 time.sleep(1)
             if time.time() - start_time >=duration:
                 break
@@ -497,8 +497,8 @@ def mode_4():
         colored_print(f"\nTìm thấy {len(new_links)} link mới:", "green")
         for link in new_links:
             colored_print(link, "yellow")
-            download_youtube_short(selected_link)
-            save_links([selected_link])
+            download_youtube_short(link)
+            save_links(link)
         colored_print(f"\nĐã lưu link vào {DATA_FILE}", "green")
     else:
         colored_print("Không tìm thấy link mới nào!", "red")
