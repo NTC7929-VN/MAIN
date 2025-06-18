@@ -34,18 +34,18 @@ def banner_rainbow(text):
         result += f"\033[38;2;{r};{g};{b}m{char}\033[0m"
     print(result)
 
-def colored_print(text, color_code=None):
+def colored_print(text, color_code=None, end='\n'):
     colors = {
         'reset': '\033[0m', 'red': '\033[91m', 'green': '\033[92m',
         'yellow': '\033[93m', 'blue': '\033[94m', 'purple': '\033[95m',
         'cyan': '\033[96m'
     }
     if color_code and color_code in colors:
-        print(f"{colors[color_code]}{text}{colors['reset']}")
+        print(f"{colors[color_code]}{text}{colors['reset']}", end=end)
     else:
         rainbow_colors = ['\033[91m', '\033[93m', '\033[92m', '\033[96m', '\033[94m', '\033[95m']
         rainbow_text = "".join(f"{rainbow_colors[i % len(rainbow_colors)]}{char}\033[0m" for i, char in enumerate(text))
-        print(rainbow_text)
+        print(rainbow_text, end=end)
 
 def clear_screen():
     system_name = platform.system()
