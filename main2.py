@@ -442,7 +442,7 @@ def mode_1():
     completed_jobs = 0 
     colored_print("ĐANG MỞ TIKTOK...", "cyan")
     open_tiktok(device_id)
-    time.sleep(randomr.randint(5,10))
+    time.sleep(random.randint(5,10))
     clear_screen()
     banner()
     time_nuoiacc=0
