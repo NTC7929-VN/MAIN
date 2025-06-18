@@ -208,10 +208,10 @@ def complete_job(job_info, headers):
 def lamjob(job_info, device_id, completed_jobs):
     run_command(f"am start -a android.intent.action.VIEW -d {job_info['link']}", device_id)
     time.sleep(random.uniform(5, 7)) 
-    if job_info['type'] == 'follow' and follow_count < 200:  
+    if job_info['type'] == 'follow':  
         run_command(f"input tap 288 630", device_id)  
         run_command(f"input tap 288 568", device_id)  
-        colored_print(f'[{device_id}] Đã nhấn follow người dùng (Follow: {follow_count + 1}/200, Job: {completed_jobs + 1}/200)', 'purple')
+        colored_print(f'[{device_id}] Đã nhấn follow người dùng ', 'purple')
         run_command("input tap 50 100",device_id)
         run_command("input keyevent 4",device_id)
     elif job_info['type'] == 'like':
