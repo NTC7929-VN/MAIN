@@ -34,18 +34,18 @@ def banner_rainbow(text):
         result += f"\033[38;2;{r};{g};{b}m{char}\033[0m"
     print(result)
 
-def colored_print(text, color_code=None, end='\n'):
+def colored_print(text, color_code=None):
     colors = {
         'reset': '\033[0m', 'red': '\033[91m', 'green': '\033[92m',
         'yellow': '\033[93m', 'blue': '\033[94m', 'purple': '\033[95m',
         'cyan': '\033[96m'
     }
     if color_code and color_code in colors:
-        print(f"{colors[color_code]}{text}{colors['reset']}", end=end)
+        print(f"{colors[color_code]}{text}{colors['reset']}")
     else:
         rainbow_colors = ['\033[91m', '\033[93m', '\033[92m', '\033[96m', '\033[94m', '\033[95m']
         rainbow_text = "".join(f"{rainbow_colors[i % len(rainbow_colors)]}{char}\033[0m" for i, char in enumerate(text))
-        print(rainbow_text, end=end)
+        print(rainbow_text)
 
 def clear_screen():
     system_name = platform.system()
@@ -161,7 +161,7 @@ def get_job_tiktok(account_id, headers):
         return get_job_tiktok(account_id, headers)
 
 def skip_job_tiktok(job_info, headers):
-    colored_print("ĐANG BỎ QUA NHIỆM VỤ...", "yellow",'\r')
+    colored_print("ĐANG BỎ QUA NHIỆM VỤ...", "yellow")
     try:
         response = requests.post(
             'https://gateway.golike.net/api/advertising/publishers/tiktok/skip-jobs',
@@ -175,7 +175,7 @@ def skip_job_tiktok(job_info, headers):
             impersonate="safari_ios"
         ).json()
         if response.get('status') == 200:
-            colored_print("ĐÃ BỎ QUA NHIỆM VỤ THÀNH CÔNG", "green",'\r')
+            colored_print("ĐÃ BỎ QUA NHIỆM VỤ THÀNH CÔNG", "green")
             return True
         colored_print(f"LỖI KHI BỎ QUA NHIỆM VỤ: {response.get('message', 'Unknown error')}", "red")
         return False
@@ -184,7 +184,7 @@ def skip_job_tiktok(job_info, headers):
         return False
 
 def complete_job(job_info, headers):
-    colored_print(f"ĐANG XÁC NHẬN HOÀN THÀNH NHIỆM VỤ {job_info['type'].upper()}...", "cyan",'\r')
+    colored_print(f"ĐANG XÁC NHẬN HOÀN THÀNH NHIỆM VỤ {job_info['type'].upper()}...", "cyan")
     try:
         response = requests.post(
             'https://gateway.golike.net/api/advertising/publishers/tiktok/complete-jobs',
@@ -290,7 +290,7 @@ def nuoi_acctiktok(device_id, duration,statuscomment=None):
         run_command("input keyevent 4",device_id)
         time.sleep(1)
     start_time = time.time()
-    colored_print(f"⏳ Bắt đầu nuôi TikTok trong {duration:.0f} giây...", "cyan",'\r')
+    colored_print(f"⏳ Bắt đầu nuôi TikTok trong {duration:.0f} giây...", "cyan")
     while time.time() - start_time < duration:
         action = random.randint(1, 50)
         if action in [1, 2, 3, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]:
@@ -327,7 +327,7 @@ def nuoi_acctiktok(device_id, duration,statuscomment=None):
             tap_hoso()
         if random.randint(1,19)==1:
             tap_hopthu()
-    colored_print("✅ Đã hoàn thành phiên nuôi acc", "green",'\r')
+    colored_print("✅ Đã hoàn thành phiên nuôi acc", "green")
 
 def get_existing_links():
     if os.path.exists(DATA_FILE):
@@ -451,7 +451,7 @@ def mode_1():
         time_start=time.time()
         if completed_jobs >= total_jobs:
             break
-        colored_print(f'Đang làm job thứ {completed_jobs + 1}/{total_jobs} ', 'purple',end='\r')
+        colored_print(f'Đang làm job thứ {completed_jobs + 1}/{total_jobs} ', 'purple')
         job_info = get_job_tiktok(account_id, headers)
         if lamjob(job_info, device_id,completed_jobs):
             completed_jobs+=1
